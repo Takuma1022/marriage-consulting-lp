@@ -432,15 +432,97 @@
             opacity: 0.7;
         }
 
-        /* --- Responsive --- */
+        /* --- Responsive (スマホ最適化) --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .concept-grid, .profile-container, .pricing-grid {
-                grid-template-columns: 1fr;
+            /* 1. 全体の文字サイズと余白の調整 */
+            body {
+                font-size: 15px; /* 基本サイズを少し小さく */
             }
-            .profile-container { flex-direction: column; }
-            .profile-img img { width: 200px; height: 200px; }
-            .price-card.recommended { transform: none; margin-top: 20px; }
+            
+            .container {
+                padding: 0 20px; /* 横の余白を確保 */
+            }
+            
+            .section-title {
+                font-size: 1.5rem; /* 見出しをスマホサイズに */
+                margin-bottom: 2rem;
+            }
+            
+            /* 2. ファーストビュー（FV）の最適化 */
+            .hero {
+                height: auto;
+                min-height: 550px; /* 高さを少し抑える */
+                padding: 80px 0;   /* 上下の余白調整 */
+                background-position: center top; /* 顔が見切れないように位置調整 */
+            }
+
+            .hero-content {
+                width: 90%; /* 画面幅いっぱいになりすぎないように */
+                padding: 25px 15px; /* 内側の余白を調整 */
+            }
+
+            .hero h1 {
+                font-size: 1.5rem; /* タイトルを読みやすいサイズに */
+                line-height: 1.5;
+                /* スマホでは「改行禁止」を解除して、はみ出しを防ぐ */
+                word-break: normal; 
+                overflow-wrap: break-word;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                /* スマホでは自然な改行を許可 */
+                word-break: normal;
+            }
+            
+            .cta-button {
+                width: 100%; /* ボタンを押しやすく幅いっぱいに */
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            /* 3. 各セクションのレイアウト縦並び化 */
+            .intro, .concept, .profile, .usp, .pricing, .faq {
+                padding: 50px 0; /* セクション間の余白を詰める */
+            }
+
+            .concept-grid, 
+            .pricing-grid {
+                grid-template-columns: 1fr; /* 1列にする */
+                gap: 30px;
+            }
+            
+            /* プロフィール画像とテキストの順序 */
+            .profile-container {
+                flex-direction: column; /* 縦並び */
+                gap: 30px;
+            }
+            
+            .profile-img img {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .profile-text {
+                text-align: center; /* スマホでは中央揃えの方が見やすい */
+            }
+            
+            .profile-name {
+                margin: 0 auto 1rem; /* 名前の中央揃え */
+            }
+
+            /* 4. 料金プランの推奨表示調整 */
+            .price-card.recommended {
+                transform: none; /* 拡大エフェクトを解除 */
+                margin-top: 0;
+                border-width: 2px; /* 枠線は見やすく維持 */
+            }
+            
+            .price-amount {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
