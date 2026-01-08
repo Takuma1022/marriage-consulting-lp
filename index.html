@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大人世代のための結婚相談所 | 人生経験を価値に変える</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --bg-color: #f9f7f2;
+            --text-color: #4a4a4a;
+            --accent-gold: #c5a059;
+            --cta-color: #d67d6d;
+            --cta-hover: #b56253;
+            --white: #ffffff;
+            --gray-light: #e5e5e5;
+        }
+
+        /* --- Reset & Base --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+            letter-spacing: 0.05em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Animations --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Components --- */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cta-color);
+            color: var(--white);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(214, 125, 109, 0.3);
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background-color: var(--cta-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 125, 109, 0.4);
+        }
+
+        /* --- Hero Section (FV) --- */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('images/emarri1.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* --- Intro Section --- */
+        .intro {
+            padding: 80px 0;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .intro p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* --- Concept Section --- */
+        .concept {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .concept-img img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .concept-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        /* --- Profile Section --- */
+        .profile {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .profile-img {
+            flex: 1;
+        }
+        .profile-img img {
+            border-radius: 50%;
+            border: 5px solid var(--bg-color);
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+
+        .profile-text {
+            flex: 2;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-family: 'Noto Serif JP', serif;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--accent-gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* --- USP Section --- */
+        .usp {
+            padding: 80px 0;
+            background-color: #f2efe9;
+        }
+
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .usp-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .usp-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .usp-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3rem;
+            color: rgba(197, 160, 89, 0.2);
+            line-height: 1;
+            margin-bottom: -20px;
+            display: block;
+        }
+
+        .usp-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+            position: relative;
+        }
+
+        /* --- Pricing Section --- */
+        .pricing {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .common-price {
+            text-align: center;
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr; /* Make recommended column slightly wider */
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: stretch; /* Stretch to fill height */
+        }
+
+        .price-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 40px;
+            background: var(--white);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card.recommended {
+            border: 2px solid var(--accent-gold);
+            background: #fffcf5;
+            box-shadow: 0 10px 40px rgba(197, 160, 89, 0.15);
+            transform: scale(1.02); /* Slight pop */
+            z-index: 2;
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-gold);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .price-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Noto Serif JP', serif;
+        }
+        .price-amount span { font-size: 1rem; font-weight: normal; }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1; /* Push button down */
+        }
+
+        .price-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .price-features li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+        
+        .price-features li.strong {
+            font-weight: bold;
+            color: #d67d6d;
+        }
+
+        /* --- FAQ Section --- */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #fcfcfc;
+            color: #666;
+        }
+        
+        .faq-answer p {
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #333;
+            color: var(--white);
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+
+        .footer-cta {
+            margin-bottom: 40px;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .concept-grid, .profile-container, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-container { flex-direction: column; }
+            .profile-img img { width: 200px; height: 200px; }
+            .price-card.recommended { transform: none; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content fade-in-up">
+            <h1>「もう一人で生きていける」と強がるのは、<br>今日で終わりにしませんか？</h1>
+            <p>傷ついた過去も、重ねた年齢も、すべてが「愛される理由」になる。<br>40代・50代からの、人生を分かち合うパートナー探し。</p>
+            <a href="#line" class="cta-button">無料個別面談を予約する</a>
+        </div>
+    </header>
+
+    <section class="intro container">
+        <div class="fade-in-up">
+            <h2 class="section-title">「年齢」「見た目」「過去」…<br>もう、婚活市場で傷つく必要はありません。</h2>
+            <p>マッチングアプリで無視される辛さ。<br>「若い子が優先なんでしょ」という諦め。</p>
+            <p>お一人での生活は気楽かもしれません。<br>でも、ふとした瞬間に襲ってくる「未来への不安」はありませんか？</p>
+            <p>「誰かが隣にいてくれたら」<br>そう思うのは、弱さではなく、人間として当たり前の感情です。</p>
+        </div>
+    </section>
+
+    <section class="concept">
+        <div class="container concept-grid">
+            <div class="concept-img fade-in-up">
+                <img src="images/emarri2.png" alt="温かい手と手">
+            </div>
+            <div class="concept-text fade-in-up">
+                <h3>その「人生経験」こそが、<br>最大の武器になります。</h3>
+                <p>若い頃の婚活は「スペック」の戦いでした。<br>でも、大人世代の婚活は「人生観」のマッチングです。</p>
+                <p>離婚の痛みを知っている人は、人の痛みに寄り添えます。<br>当サロンは、IBJ正規加盟店として、あなたの人生を「選ばれる価値」に翻訳する専門の相談所です。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile">
+        <div class="container profile-container">
+            <div class="profile-img fade-in-up">
+                <img src="images/sakura.png" alt="代表さくら">
+            </div>
+            <div class="profile-text fade-in-up">
+                <h2 class="section-title" style="text-align: left;">「私も、たくさん遠回りをしました」</h2>
+                <div class="profile-name">代表カウンセラー:さくら</div>
+                <p>「先生」として20年、子どもたちと向き合ってきました。<br>私自身、離婚、事実婚、そして再婚を経験しています。</p>
+                <p>「普通の幸せ」とは違う形かもしれませんが、今は心から信頼できるパートナーと穏やかな日々を過ごしています。</p>
+                <p>だからこそ、あなたに「教科書通りの婚活」は押し付けません。<br>あなたのその手で、温かいお茶を一緒に飲む相手を見つけにいきましょう。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="usp">
+        <div class="container">
+            <h2 class="section-title">選ばれる3つの理由</h2>
+            <div class="usp-grid">
+                <div class="usp-card fade-in-up">
+                    <span class="usp-number">01</span>
+                    <h3 class="usp-title">「不利」を「魅力」に</h3>
+                    <p>離婚歴や年齢を隠さず、「だからこそ、こういう人生を歩みたい」というストーリーに変え、同年代の真剣な男性に刺さる文章を作成します。</p>
+                </div>
+                <div class="usp-card fade-in-up">
+                    <span class="usp-number">02</span>
+                    <h3 class="usp-title">身元保証された出会い</h3>
+                    <p>独身証明書必須のIBJ会員（約9万人）からお相手を探せます。遊び目的はゼロ。安心して「好き」という気持ちに向き合えます。</p>
+                </div>
+                <div class="usp-card fade-in-up">
+                    <span class="usp-number">03</span>
+                    <h3 class="usp-title">元教師の徹底伴走</h3>
+                    <p>「どんな服を着ればいい？」「LINEの返信は？」具体的でわかりやすいアドバイスで、自信がないあなたの背中を優しく押します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <p style="text-align: center; margin-bottom: 30px;">「今年中に結果を出す」ための、2つの選択肢。</p>
+            
+            <div class="common-price fade-in-up">
+                <h3>【共通費用】</h3>
+                <p><strong>入会金・初期費用:100,000円</strong>（税別）<br><small>（システム登録、プロフィール作成、写真撮影同行、目標設定面談含む）</small></p>
+                <p><strong>成婚料:200,000円</strong>（税別）<br><small>（完全成果報酬）</small></p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card fade-in-up">
+                    <div class="price-name">マイペース検索コース</div>
+                    <div class="price-amount">12,000円<span>/月</span></div>
+                    <ul class="price-features">
+                        <li>お相手検索・申し込み</li>
+                        <li>自分のペースで活動</li>
+                        <li>面談なし（オプション有料）</li>
+                        <li>事務的なLINE連絡のみ</li>
+                    </ul>
+                </div>
+
+                <div class="price-card recommended fade-in-up">
+                    <div class="badge">9割の方が選択！</div>
+                    <div class="price-name">さくら伴走コース</div>
+                    <div class="price-amount">22,000円<span>/月</span></div>
+                    <ul class="price-features">
+                        <li>お相手検索・申し込み</li>
+                        <li class="strong">さくらからの推薦紹介あり</li>
+                        <li class="strong">月1回 定期作戦会議 (Zoom/対面)</li>
+                        <li class="strong">LINE相談無制限（服装・返信添削）</li>
+                        <li>プロフィール都度改善</li>
+                    </ul>
+                    <a href="#line" class="cta-button" style="width:100%">このプランで相談する</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">※途中でのコース変更も可能です。</p>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            
+            <div class="faq-item fade-in-up">
+                <div class="faq-question">50代で離婚歴もあり、自信がありません。</div>
+                <div class="faq-answer">
+                    <p>もちろんです、歓迎いたします。IBJには同年代の再婚希望者が多数いらっしゃいます。「今のあなた」がいいと言ってくれる人が必ずいます。</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in-up">
+                <div class="faq-question">アプリで全くマッチングしませんでした。</div>
+                <div class="faq-answer">
+                    <p>アプリとは「層」も「戦い方」も違います。アプリは写真映えが全てですが、相談所は「条件」と「人柄」です。プロフィールをプロが作成すれば結果は変わります。</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in-up">
+                <div class="faq-question">恋愛が面倒、親の介護も心配です。</div>
+                <div class="faq-answer">
+                    <p>「結婚」ではなく「パートナーシップ」を求めているのですね。週末婚や事実婚など、お互いが心地よい距離感を最初に条件提示できるのが相談所の良さです。</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in-up">
+                <div class="faq-question">どちらのコースが良いか迷います。</div>
+                <div class="faq-answer">
+                    <p>9割の方が「伴走コース」でスタートされます。特にアプリでうまくいかなかった方は、原因分析ができる伴走コース一択とお考えください。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-cta fade-in-up">
+                <h2>来年の誕生日も、一人でケーキを買いますか？</h2>
+                <p style="margin: 20px 0;">まずは無料面談で、不安を全て吐き出してください。<br>無理な勧誘は一切いたしません。</p>
+                <a href="#line" class="cta-button" id="line">LINEで無料相談を予約する</a>
+            </div>
+            <p>&copy; Sakura Marriage Agency. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fade-in Animation
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+                const answer = item.nextElementSibling;
+                if (parent.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    answer.style.maxHeight = null;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
